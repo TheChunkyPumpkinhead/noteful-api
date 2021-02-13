@@ -35,3 +35,4 @@
   "devDependencies": {
     "postgrator-cli": "^3.2.0"
   }
+}
