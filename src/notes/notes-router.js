@@ -10,9 +10,9 @@ const jsonParser = express.json();
 const serializeNote = note => ({
   id: note.id,
   date_published: note.date_published,
-  title:xss(note.title),
+  title: xss(note.title),
   content: xss(note.content),
- 
+folder_id: note.folder_id
 });
 
 NotesRouter
@@ -26,8 +26,8 @@ NotesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { title } = req.body;
-    const newNote = { title };
+    const { title, content, folder_id} = req.body;
+    const newNote = { title, content, folder_id };
 
     for (const [key, value] of Object.entries(newNote))
       if (value == null)
@@ -35,7 +35,7 @@ NotesRouter
           error: { message: `Missing '${key}' in request body` }
         });
 
- NotesService.insertNode(
+    NotesService.insertNote(
       req.app.get('db'),
       newNote
     )
@@ -93,7 +93,7 @@ NotesRouter
     NotesService.updateNote(
       req.app.get('db'),
       req.params.note_id,
-     noteToUpdate
+      noteToUpdate
     )
       .then(numRowsAffected => {
         console.log('numrows affected', numRowsAffected);
@@ -105,4 +105,4 @@ NotesRouter
 
 
 
-module.exports =NotesRouter;
+module.exports = NotesRouter;

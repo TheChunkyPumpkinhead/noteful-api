@@ -10,10 +10,8 @@
     "migrate:test": "env NODE_ENV=test npm run migrate",
     "migrate:production": "heroku run npm run migrate",
     "start": "node src/server.js",
-    
     "deploy": "git push heroku master",
     "postdeploy": "npm run migrate:production"
-
   },
   "keywords": [],
   "author": "",
@@ -26,13 +24,13 @@
     "express": "^4.17.1",
     "helmet": "^3.21.1",
     "heroku": "^7.47.12",
-    "knex": "^0.20.1",
+    "knex": "^0.21.17",
     "logger": "0.0.1",
     "mocha": "^6.2.1",
     "morgan": "^1.9.1",
     "npm-check-updates": "^3.2.1",
-    "pg": "^7.12.1",
-    "postgrator-cli": "^3.2.0",
+    "pg": "^8.5.1",
+    "postgrator-cli": "^4.0.0",
     "supertest": "^4.0.2",
     "xss": "^1.0.6"
   },

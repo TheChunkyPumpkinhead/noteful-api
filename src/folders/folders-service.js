@@ -1,6 +1,6 @@
 const FoldersService = {
   getAllFolders(knex) {
-    return knex.select('*').from('noteful_folders')
+    return knex.select('*').from('noteful_folders');
   },
   //ASK MENTOR ABOUT THIS
   insertFolder(knex, newFolder) {
@@ -9,8 +9,8 @@ const FoldersService = {
       .into('noteful_folders')
       .returning('*')
       .then(rows => {
-        console.log('rows', rows)
-        return rows[0]
+        console.log('rows', rows);
+        return rows[0];
       });
   },
 
@@ -20,21 +20,21 @@ const FoldersService = {
       .from('noteful_folders')
       .select('*')
       .where('id', parseInt(folder_id, 10))
-      .first()
+      .first();
   },
 
   deleteFolder(knex, folder_id) {
-    console.log('folder_id', folder_id)
+    console.log('folder_id', folder_id);
     return knex('noteful_folders')
       .where({ folder_id })
-      .delete()
+      .delete();
   },
 
   updateFolder(knex, id, newFolderFields) {
     return knex('noteful_folders')
       .where({ id })
-      .update(newFolderFields)
+      .update(newFolderFields);
   }
-}
+};
 
-module.exports = FoldersService
+module.exports = FoldersService;
